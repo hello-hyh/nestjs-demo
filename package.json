@@ -6,6 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "createDBModel": "rimraf ./src/entities & npx typeorm-model-generator -h  119.45.0.66 -d nestjs-demo -p 3306 -u root -x 123456 -e mysql -o ./src/entities --noConfig true --ce pascal --cp camel",
+    "postcreateDBModel": "node ",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -21,14 +23,17 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/comzmon": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.1.4",
+    "@nestjs/typeorm": "^8.0.2",
+    "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "typeorm": "^0.2.40"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

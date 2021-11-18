@@ -1,0 +1,9 @@
+{
+  "type": "mysql",
+  "host": "119.45.0.66",
+  "username": "root",
+  "password": "123456",
+  "database": "nestjs-demo",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": false
+}
