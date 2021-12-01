@@ -1,18 +1,19 @@
+import { renameFn } from './rename'
+import { conf } from '../dbConf'
 const shelljs = require('shelljs')
-const dbConfs = require('../ormconfig.json')
-const testDbConf = dbConfs[0]
+const useConf = conf.tox as any
+
 if (!shelljs.which('npm')) {
   shelljs.echo('Sorry, this script requires npm')
   shelljs.exit(1)
 }
-const buildDBEntityStr = `rimraf ./src/entities & npx typeorm-model-generator -h  ${
-  testDbConf.host
-} -d ${testDbConf.database} -p ${testDbConf.port ?? 3306} -u ${
-  testDbConf.username
-} -x ${testDbConf.username} -e ${
-  testDbConf.type
-} -o ./src/entities --noConfig true --ce pascal --cp camel`
-if (shelljs.exec(buildDBEntityStr).code !== 0) {
-  shelljs.echo('Error: failed')
-  shelljs.exit(1)
-}
+const buildDBEntityStr = `npx rimraf ./src/entities & npx typeorm-model-generator -h  ${
+  useConf.host
+} -d ${useConf.database} -p ${useConf.port ?? 3306} -u ${useConf.username} -x ${
+  useConf.password
+} -e ${useConf.type} -o ./src/entities  --noConfig true --ce pascal --cp camel`
+console.log(buildDBEntityStr)
+try {
+  shelljs.exec(buildDBEntityStr)
+  renameFn()
+} catch (error) {}

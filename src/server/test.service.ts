@@ -1,20 +1,16 @@
 import { Injectable, Inject } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { User } from '../../entitys/user.entity'
 import { Repository } from 'typeorm'
-import { Test_table } from '../../entitys/test.entity'
-
+import { Users } from '../entities/Users.entity'
 @Injectable()
 export class TestService {
   constructor(
-    @InjectRepository(Test_table) // 这里应该使用模板字符串
-    private readonly testRepository: Repository<Test_table>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>
+    @InjectRepository(Users)
+    private readonly userRepository: Repository<Users>
   ) {}
 
-  async findAll(): Promise<Test_table[]> {
-    return this.testRepository.find()
+  async findAll() {
+    return this.userRepository.find()
   }
   async findUserAll() {
     return this.userRepository.find()

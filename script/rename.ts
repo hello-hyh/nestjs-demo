@@ -2,7 +2,7 @@ const { readdir, rename } = require('fs/promises')
 
 const path = require('path')
 const entityDir = path.resolve(__dirname, '../src/entities')
-;(async () => {
+export const renameFn = async () => {
   const files = await readdir(entityDir)
   for (const f of files) {
     const fileNameArr = f.split('.')
@@ -13,4 +13,4 @@ const entityDir = path.resolve(__dirname, '../src/entities')
       console.log('nothing')
     }
   }
-})()
+}

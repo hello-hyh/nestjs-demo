@@ -1,9 +1,8 @@
 import { Controller, Get } from '@nestjs/common'
-import { Test_table } from 'entitys/test.entity'
-
+import { ApiTags } from '@nestjs/swagger'
 import { AppService } from './app.service'
 import { TestService } from './server/test.service'
-
+@ApiTags('app')
 @Controller('app')
 export class AppController {
   constructor(
@@ -11,13 +10,13 @@ export class AppController {
     private readonly testService: TestService
   ) {}
 
-  @Get('/get/hello')
+  @Get('get/hello')
   getHello(): string {
     return this.appService.getHello()
   }
 
   @Get('get/testinfos')
-  async getTestInfo(): Promise<Test_table[]> {
+  async getTestInfo() {
     return await this.testService.findAll()
   }
   @Get('get/userinfos')
